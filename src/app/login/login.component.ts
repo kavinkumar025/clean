@@ -56,14 +56,12 @@ export class LoginComponent {
         localStorage.setItem('user', JSON.stringify({ role: 'user' }));
         this.router.navigate(['/home']);
       }
-
+      localStorage.setItem('email', email);
     })
       .catch((error) => {
         this.errorMessage = 'Invalid email or password.';
         console.error('Login error:', error);
       });
-
-
   }
 
   onSignUpSubmit() {

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataStoreService } from 'src/app/data-store.service';
-import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore';
-import { FirebaseApp } from '@angular/fire/app';
+import { getFirestore, collection, query, where, getDocs, doc, updateDoc } from 'firebase/firestore';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-employee-listing',
@@ -22,37 +22,45 @@ export class EmployeeListingComponent {
   public sortColumn: string | null = null;
   public sortDirection: 'asc' | 'desc' | null = null;
   public searchForm: FormGroup;
-  private db = getFirestore();
+  public db = getFirestore();
+  public isAdmin: boolean = false;
+  public statusOptions: string[] = ['In Progress', 'In Review', 'Blocked', "Closed (Won't Fix)", 'Closed (Fixed)'];
 
   constructor(
-    private dataService: DataStoreService,
-    private fb: FormBuilder,
+    public dataService: DataStoreService,
+    public fb: FormBuilder,
     public router: Router
   ) {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    this.isAdmin = user.role === 'admin' || user.role === 'super admin';
+    const storedEmail = localStorage.getItem('email') || ''
     this.searchForm = this.fb.group({
       name: [''],
       contact: [''],
       email: [''],
       address: ['']
     });
+    if (!this.isAdmin) this.searchForm.controls['email'].setValue(storedEmail);
   }
 
   ngOnInit() {
     this.fetchDataFromFirestore();
   }
+
   async fetchDataFromFirestore() {
-    const employeesRef = collection(this.db, 'employees');
+    const employeesRef = collection(this.db, 'complaint');
     const q = query(
       employeesRef,
-      // Dynamically apply filters based on search form values
       ...(this.searchForm.value.name ? [where('name', '==', this.searchForm.value.name)] : []),
       ...(this.searchForm.value.contact ? [where('contact', '==', this.searchForm.value.contact)] : []),
       ...(this.searchForm.value.email ? [where('email', '==', this.searchForm.value.email)] : []),
       ...(this.searchForm.value.address ? [where('address', '==', this.searchForm.value.address)] : [])
     );
-    
     const querySnapshot = await getDocs(q);
-    this.data = querySnapshot.docs.map(doc => doc.data());
+    this.data = querySnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
     this.filteredData = [...this.data];
     this.updatePagination();
   }
@@ -93,7 +101,7 @@ export class EmployeeListingComponent {
 
   // Handle search action
   public onSearch() {
-    this.fetchDataFromFirestore();  // Re-fetch data based on the filters
+    this.fetchDataFromFirestore();
   }
 
   // Handle search reset
@@ -104,6 +112,24 @@ export class EmployeeListingComponent {
 
   public add() {
     this.router.navigate(['/api-data-table']);
+  }
+
+  async updateStatus(employee: any) {
+    debugger
+    try {
+      const employeeRef = doc(this.db, 'complaint', employee.id);
+      await updateDoc(employeeRef, { status: employee.status });
+      Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: `Status updated successfully!`,
+        confirmButtonText: 'OK',
+      }).then(() => {
+
+      });
+    } catch (error) {
+      console.error('Error updating status:', error);
+    }
   }
 
 }

@@ -26,7 +26,8 @@
     <!-- Email -->
     <div class="form-group">
       <label for="email" class="font-weight-bold">Email</label>
-      <input id="email" type="email" class="form-control" formControlName="email" placeholder="Enter Email" />
+      <input [readonly]="true" id="email" type="email" class="form-control" formControlName="email"
+        placeholder="Enter Email" />
       <div *ngIf="f?.['email']?.touched && f?.['email']?.invalid" class="text-danger">
         <div *ngIf="f?.['email']?.errors?.['required']">Email is required.</div>
         <div *ngIf="f?.['email']?.errors?.['email']">Enter a valid email.</div>
@@ -42,20 +43,37 @@
         <div *ngIf="f?.['address']?.errors?.['maxlength']">Address cannot exceed 200 characters.</div>
       </div>
     </div>
-
-     <!-- Issues -->
-  <div class="form-group">
-    <label for="issues" class="font-weight-bold">Issues</label>
-    <select id="issues" class="form-control" formControlName="issues">
-      <option value="Water Issue">Water Issue</option>
-      <option value="Plumber Issues">Plumber Issues</option>
-      <option value="Flooding">Flooding</option>
-      <option value="Electricity">Electricity</option>
-      <option value="Other">Other</option>
-    </select>
-  </div>
-
-  
+    <!-- Issues -->
+    <div class="form-group">
+      <label for="issues" class="font-weight-bold">Issues</label>
+      <select id="issues" class="form-control" formControlName="issues">
+        <option value="Water Issue">Water Issue</option>
+        <option value="Plumber Issues">Plumber Issues</option>
+        <option value="Flooding">Flooding</option>
+        <option value="Electricity">Electricity</option>
+        <option value="Other">Other</option>
+        <option value="Internet Connectivity">Internet Connectivity</option>
+        <option value="Traffic Congestion">Traffic Congestion</option>
+        <option value="Garbage Collection">Garbage Collection</option>
+        <option value="Road Maintenance">Road Maintenance</option>
+        <option value="Water Shortage">Water Shortage</option>
+        <option value="Public Transportation">Public Transportation</option>
+        <option value="Street Lights Out">Street Lights Out</option>
+        <option value="Air Pollution">Air Pollution</option>
+        <option value="Sanitation">Sanitation</option>
+        <option value="Security Concerns">Security Concerns</option>
+        <option value="Construction Noise">Construction Noise</option>
+        <option value="Noise Pollution">Noise Pollution</option>
+      </select>
+    </div>
+    <!-- File Input for Image Upload -->
+    <div class="form-group">
+      <label for="image" class="font-weight-bold">Upload Image **Optional**</label>
+      <input type="file" id="image" accept="image/*" class="form-control" (change)="onFileSelected($event)" />
+      <div *ngIf="imageError" class="text-danger">{{ imageError }}</div>
+    </div>
+    <!-- Display Uploaded Image Preview -->
+    <img *ngIf="base64Image" [src]="base64Image" class="img-thumbnail mt-3" width="150" height="150" />
     <button type="submit" class="btn btn-success btn-block" [disabled]="addEmployeeForm.invalid">
       Submit
     </button>
