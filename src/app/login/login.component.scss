@@ -1,0 +1,114 @@
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(90deg, #e91e63 50%, #1d1d1d 50%);
+}
+
+
+.login-card {
+  width: 90vw;
+  max-width: 70vw;
+  height: 80vh;
+  background-color: white;
+  border-radius: 1vw;
+  overflow: hidden;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+.image-section {
+  background: url('https://media.gettyimages.com/id/77862674/photo/hands-on-a-globe.jpg?s=612x612&w=0&k=20&c=Sr7LNYiwVPL7fq7aQeJNZWYWhw6Q8nQR_sTskYC-9fg=') no-repeat center center;
+  background-size: cover;
+  width: 50%;
+  height: 100%;
+}
+
+.image-section h1 {
+  font-size: 2vw;
+  font-weight: bold;
+}
+
+.image-section p {
+  font-size: 1.2vw;
+}
+
+.form-section {
+  padding: 4vw;
+  width: 50%;
+}
+
+.form-section h2 {
+  font-size: 2vw;
+  font-weight: bold;
+  margin-bottom: 2vh;
+}
+
+.form-label {
+  font-size: 1vw;
+}
+
+.form-control {
+  font-size: 1vw;
+  padding: 1vh 1vw;
+}
+
+.btn-primary {
+  background-color: #e91e63;
+  border-color: #e91e63;
+  font-size: 1.2vw;
+  padding: 1vh 2vw;
+}
+
+.btn-primary:hover {
+  background-color: #d81b60;
+  border-color: #d81b60;
+}
+
+@media (max-width: 768px) {
+  .login-card {
+    flex-direction: column;
+    width: 95vw;
+    height: auto;
+  }
+
+  .image-section {
+    width: 100%;
+    height: 30vh;
+  }
+
+  .form-section {
+    width: 100%;
+    padding: 3vw;
+  }
+
+  .image-section h1,
+  .image-section p,
+  .form-section h2,
+  .form-label,
+  .form-control,
+  .btn-primary {
+    font-size: 3vw;
+  }
+
+  .btn-primary {
+    padding: 1.5vh 2.5vw;
+  }
+}
+
+.form-section .btn {
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.form-section .d-flex .btn {
+  max-width: 48%;
+}
+
+.btn-secondary {
+  background-color: #e91e63;
+  /* Darker Pink */
+  border-color: #e91e63;
+}

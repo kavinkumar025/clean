@@ -1,0 +1,63 @@
+<div class="container">
+  <h2 class="text-center my-4">Add complaint</h2>
+  <form [formGroup]="addEmployeeForm" (ngSubmit)="onSubmit()" class="employee-form">
+    <!-- User Name -->
+    <div class="form-group">
+      <label for="name" class="font-weight-bold">User Name</label>
+      <input id="name" type="text" class="form-control" formControlName="name" placeholder="Enter User Name" />
+      <div *ngIf="f?.['name']?.touched && f?.['name']?.invalid" class="text-danger">
+        <div *ngIf="f?.['name']?.errors?.['required']">User Name is required.</div>
+        <div *ngIf="f?.['name']?.errors?.['minlength']">User Name must be at least 3 characters long.</div>
+        <div *ngIf="f?.['name']?.errors?.['maxlength']">User Name cannot exceed 50 characters.</div>
+        <div *ngIf="f?.['name']?.errors?.['pattern']">Only alphabets, no spaces</div>
+      </div>
+    </div>
+    <!-- Contact Number -->
+    <div class="form-group">
+      <label for="contact" class="font-weight-bold">Contact Number</label>
+      <input id="contact" type="text" class="form-control" formControlName="contact"
+        placeholder="Enter Contact Number" />
+      <div *ngIf="f?.['contact']?.touched && f?.['contact']?.invalid" class="text-danger">
+        <div *ngIf="f?.['contact']?.errors?.['required']">Contact Number is required.</div>
+        <div *ngIf="f?.['contact']?.errors?.['pattern']">Contact Number must be 10 digits.</div>
+        <div *ngIf="f?.['contact']?.errors?.['maxlength']">Contact Number cannot exceed 10 digits.</div>
+      </div>
+    </div>
+    <!-- Email -->
+    <div class="form-group">
+      <label for="email" class="font-weight-bold">Email</label>
+      <input id="email" type="email" class="form-control" formControlName="email" placeholder="Enter Email" />
+      <div *ngIf="f?.['email']?.touched && f?.['email']?.invalid" class="text-danger">
+        <div *ngIf="f?.['email']?.errors?.['required']">Email is required.</div>
+        <div *ngIf="f?.['email']?.errors?.['email']">Enter a valid email.</div>
+        <div *ngIf="f?.['email']?.errors?.['maxlength']">Email cannot exceed 100 characters.</div>
+      </div>
+    </div>
+    <!-- Address -->
+    <div class="form-group">
+      <label for="address" class="font-weight-bold">Address</label>
+      <input id="address" type="text" class="form-control" formControlName="address" placeholder="Enter Address" />
+      <div *ngIf="f?.['address']?.touched && f?.['address']?.invalid" class="text-danger">
+        <div *ngIf="f?.['address']?.errors?.['required']">Address is required.</div>
+        <div *ngIf="f?.['address']?.errors?.['maxlength']">Address cannot exceed 200 characters.</div>
+      </div>
+    </div>
+
+     <!-- Issues -->
+  <div class="form-group">
+    <label for="issues" class="font-weight-bold">Issues</label>
+    <select id="issues" class="form-control" formControlName="issues">
+      <option value="Water Issue">Water Issue</option>
+      <option value="Plumber Issues">Plumber Issues</option>
+      <option value="Flooding">Flooding</option>
+      <option value="Electricity">Electricity</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+
+  
+    <button type="submit" class="btn btn-success btn-block" [disabled]="addEmployeeForm.invalid">
+      Submit
+    </button>
+  </form>
+</div>

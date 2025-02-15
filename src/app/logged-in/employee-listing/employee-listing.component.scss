@@ -1,0 +1,52 @@
+.container {
+    width: 70vw;
+    margin: 0 auto;
+}
+
+.table {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.pagination {
+    margin-top: 20px;
+}
+
+.employee-listing-container {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  
+  .cursor-pointer {
+    cursor: pointer;
+  }
+  
+  .table-container {
+    margin-top: 20px;
+  }
+  
+  .table-responsive {
+    overflow-x: auto; /* Ensures the table scrolls horizontally on small screens */
+  }
+  
+  .pagination-container {
+    margin-top: 20px;
+  }
+  
+  .total-records {
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  
+  .add-employee-button {
+    margin-top: 20px;
+  }
+  
+  @media (max-width: 768px) {
+    .add-employee-button button {
+      width: 100%; /* Ensure the button spans the full width on smaller screens */
+    }
+  }
+  
+  

@@ -1,0 +1,28 @@
+.d-flex {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    background-color: #f8f9fa;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    overflow-y: auto;
+    transition: width 0.3s ease;
+    /* Smooth width transition */
+}
+
+.sidebar.collapsed {
+    width: 60px;
+    /* Fixed width when collapsed */
+}
+
+.main-content {
+    transition: width 0.3s ease;
+    /* Smooth width transition */
+}
+
+.main-content.full-width {
+    width: 100vw;
+    overflow-x: auto;
+}

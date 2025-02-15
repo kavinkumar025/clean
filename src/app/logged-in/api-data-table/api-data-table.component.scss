@@ -1,0 +1,88 @@
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h2 {
+    color: #343a40;
+    font-size: 2rem;
+}
+
+.employee-form {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    color: #495057;
+    font-size: 1.1rem;
+}
+
+input.form-control {
+    border-radius: 4px;
+    box-shadow: none;
+    font-size: 1rem;
+    padding: 10px;
+}
+
+input.form-control:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+.text-danger {
+    font-size: 0.875rem;
+    margin-top: 5px;
+}
+
+.text-danger div {
+    padding-left: 20px;
+}
+
+button[type="submit"] {
+    font-size: 1.2rem;
+    padding: 12px;
+    border-radius: 5px;
+    border: none;
+}
+
+button[type="submit"]:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+button[type="submit"]:not(:disabled) {
+    background-color: #28a745;
+    color: white;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover:not(:disabled) {
+    background-color: #218838;
+}
+
+button[type="submit"]:focus {
+    outline: none;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .employee-form {
+        padding: 15px;
+    }
+
+    input.form-control {
+        font-size: 0.9rem;
+    }
+}

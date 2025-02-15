@@ -1,0 +1,30 @@
+<div class="d-flex">
+    <!-- Sidebar -->
+    <div class="sidebar vh-100 bg-dark text-white p-3" [ngClass]="{
+        'sidebar-expanded': sidebarExpanded,
+        'sidebar-collapsed': !sidebarExpanded,
+        'sidebar-hidden': !sidebarExpanded && isMobile
+      }">
+        <h3 class="mb-4">Menu</h3>
+        <ul class="list-unstyled">
+            <li class="mb-2">
+                <a routerLink="/home" class="text-decoration-none text-white">Home</a>
+            </li>
+            <li *ngIf="isAdmin" class="mb-2">
+                <a routerLink="/complaint-listing" class="text-decoration-none text-white">Complaint  List</a>
+            </li>
+            <li class="mb-2">
+                <a routerLink="/add-complaint-table" class="text-decoration-none text-white">ADD Complaint Table</a>
+            </li>
+            <li class="mt-4">
+                <button (click)="logout()" class="btn btn-outline-light w-100">Logout</button>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Mobile Toggle Button -->
+    <button class="btn btn-dark d-block d-md-none toggle-btn" (click)="toggleSidebar()">
+        <span *ngIf="!sidebarExpanded">&#9776;</span> <!-- Hamburger icon -->
+        <span *ngIf="sidebarExpanded">X</span> <!-- Close icon -->
+    </button>
+</div>
